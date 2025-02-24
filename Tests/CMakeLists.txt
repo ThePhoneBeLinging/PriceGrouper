@@ -10,6 +10,8 @@ set(SOURCES
         ../src/SmallPriceGroup.h
         SmallPriceGroupTest.cpp
         SmallPriceGroupTest.h
+        PriceSorterTests.cpp
+        PriceSorterTests.h
         )
 add_executable(PriceGrouper_Tests ${SOURCES})
 

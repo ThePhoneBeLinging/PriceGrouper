@@ -13,7 +13,6 @@ class PriceSorter
 {
 public:
     static std::vector<std::vector<std::shared_ptr<SmallPriceGroup>>> sortPrices(const std::vector<int>& prices);
-private:
     static std::shared_ptr<SmallPriceGroup> findSmallPriceGroup(int hour, const std::vector<int>& prices);
 };
 

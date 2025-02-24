@@ -40,9 +40,9 @@ std::shared_ptr<SmallPriceGroup> PriceSorter::findSmallPriceGroup(int hour, cons
 {
     int price = prices[hour];
     auto smallPriceGroup = std::make_shared<SmallPriceGroup>(price, hour);
-    for (int i = hour; i < prices.size(); i++)
+    for (int i = hour + 1; i < prices.size(); i++)
     {
-        if (not smallPriceGroup->shouldAdd(prices[i]))
+        if (not smallPriceGroup->shouldAdd(prices[i]) && smallPriceGroup->getEndTime() != hour + 1)
         {
             break;
         }
