@@ -10,7 +10,7 @@
 
 std::vector<std::vector<std::shared_ptr<SmallPriceGroup>>> PriceSorter::sortPrices(const std::vector<int>& prices)
 {
-    if (prices.size() % 24 == 0)
+    if (prices.size() % 24 != 0)
     {
         std::cout << "Complete day was not used in PriceSorter, only receieved: " << prices.size() << std::endl;
     }
