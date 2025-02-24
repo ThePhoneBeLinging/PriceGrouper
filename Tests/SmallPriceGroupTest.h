@@ -6,6 +6,7 @@
 #define SMALLPRICEGROUPTEST_H
 #include <gtest/gtest.h>
 #include "../src/SmallPriceGroup.h"
+#include "Utility/ConfigController.h"
 
 
 class SmallPriceGroupTest : public ::testing::Test
@@ -13,6 +14,7 @@ class SmallPriceGroupTest : public ::testing::Test
 protected:
     void SetUp() override
     {
+        ConfigController::loadConfig("../../Resources/config.json");
     }
 
     void TearDown() override
@@ -53,6 +55,32 @@ TEST_F(SmallPriceGroupTest, GetEndTime)
     }
     EXPECT_EQ(smallPriceGroup->getEndTime(), 52);
 }
+
+TEST_F(SmallPriceGroupTest, ShouldAdd1)
+{
+    ConfigController::TESTsetConfigInt("PercentageGapInGroups",5);
+    ConfigController::TESTsetConfigInt("MinimumGapInGroups",15);
+    auto smallPriceGroup = std::make_shared<SmallPriceGroup>(100,0);
+    EXPECT_TRUE(smallPriceGroup->shouldAdd(104));
+    EXPECT_FALSE(smallPriceGroup->shouldAdd(115));
+    EXPECT_TRUE(smallPriceGroup->shouldAdd(114));
+    EXPECT_TRUE(smallPriceGroup->shouldAdd(86));
+    EXPECT_FALSE(smallPriceGroup->shouldAdd(85));
+}
+
+TEST_F(SmallPriceGroupTest, ShouldAdd2)
+{
+    ConfigController::TESTsetConfigInt("PercentageGapInGroups",5);
+    ConfigController::TESTsetConfigInt("MinimumGapInGroups",15);
+    auto smallPriceGroup = std::make_shared<SmallPriceGroup>(1000,0);
+
+    EXPECT_TRUE(smallPriceGroup->shouldAdd(1049));
+    EXPECT_FALSE(smallPriceGroup->shouldAdd(1050));
+    EXPECT_TRUE(smallPriceGroup->shouldAdd(951));
+    EXPECT_FALSE(smallPriceGroup->shouldAdd(950));
+    EXPECT_TRUE(smallPriceGroup->shouldAdd(1000));
+}
+
 
 
 
