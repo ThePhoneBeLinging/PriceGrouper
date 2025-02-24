@@ -40,6 +40,20 @@ TEST_F(SmallPriceGroupTest, calcAverage)
     EXPECT_EQ(smallPriceGroup->calcAveragePrice(),87);
 }
 
+TEST_F(SmallPriceGroupTest, GetEndTime)
+{
+    auto smallPriceGroup = std::make_shared<SmallPriceGroup>(50,0);
+    EXPECT_EQ(smallPriceGroup->getEndTime(), 1);
+    smallPriceGroup->addPrice(50);
+    EXPECT_EQ(smallPriceGroup->getEndTime(), 2);
+
+    for (int i = 0; i < 50; i++)
+    {
+        smallPriceGroup->addPrice(i);
+    }
+    EXPECT_EQ(smallPriceGroup->getEndTime(), 52);
+}
+
 
 
 #endif //SMALLPRICEGROUPTEST_H
