@@ -59,26 +59,34 @@ TEST_F(SmallPriceGroupTest, GetEndTime)
 TEST_F(SmallPriceGroupTest, ShouldAdd1)
 {
     ConfigController::TESTsetConfigInt("PercentageGapInGroups",5);
-    ConfigController::TESTsetConfigInt("MinimumGapInGroups",15);
+    ConfigController::TESTsetConfigInt("MinimumGapInGroupsCents",15);
+    ConfigController::TESTsetConfigInt("MaximumGapInGroupsCents",500);
     auto smallPriceGroup = std::make_shared<SmallPriceGroup>(100,0);
     EXPECT_TRUE(smallPriceGroup->shouldAdd(104));
+    smallPriceGroup->addPrice(104);
     EXPECT_FALSE(smallPriceGroup->shouldAdd(115));
     EXPECT_TRUE(smallPriceGroup->shouldAdd(114));
+    smallPriceGroup->addPrice(114);
     EXPECT_TRUE(smallPriceGroup->shouldAdd(86));
+    smallPriceGroup->addPrice(86);
     EXPECT_FALSE(smallPriceGroup->shouldAdd(85));
 }
 
 TEST_F(SmallPriceGroupTest, ShouldAdd2)
 {
     ConfigController::TESTsetConfigInt("PercentageGapInGroups",5);
-    ConfigController::TESTsetConfigInt("MinimumGapInGroups",15);
+    ConfigController::TESTsetConfigInt("MinimumGapInGroupsCents",15);
+    ConfigController::TESTsetConfigInt("MaximumGapInGroupsCents",500);
     auto smallPriceGroup = std::make_shared<SmallPriceGroup>(1000,0);
 
     EXPECT_TRUE(smallPriceGroup->shouldAdd(1049));
+    smallPriceGroup->addPrice(1049);
     EXPECT_FALSE(smallPriceGroup->shouldAdd(1050));
     EXPECT_TRUE(smallPriceGroup->shouldAdd(951));
+    smallPriceGroup->addPrice(951);
     EXPECT_FALSE(smallPriceGroup->shouldAdd(950));
     EXPECT_TRUE(smallPriceGroup->shouldAdd(1000));
+    smallPriceGroup->addPrice(1000);
 }
 
 

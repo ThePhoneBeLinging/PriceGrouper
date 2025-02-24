@@ -15,7 +15,17 @@ SmallPriceGroup::SmallPriceGroup(int price, int hour)
 bool SmallPriceGroup::shouldAdd(int price)
 {
     int percentage = ConfigController::getConfigInt("PercentageGapInGroups");
-    int minGap = ConfigController::getConfigInt("MinimumGapInGroups");
+    int minGap = ConfigController::getConfigInt("MinimumGapInGroupsCents");
+    int maxGap = ConfigController::getConfigInt("MaximumGapInGroupsCents");
+
+    if (std::max(prices_[0],price) - std::min(prices_[0],price) > maxGap)
+    {
+        return false;
+    }
+    if (prices_.size() == 1)
+    {
+        return true;
+    }
     float multiplier = static_cast<float>(percentage) / 100.0f;
     int minMaxValue = prices_[0] * multiplier;
     minMaxValue = std::max(minMaxValue, minGap);

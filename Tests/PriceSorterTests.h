@@ -25,7 +25,7 @@ protected:
 TEST(PriceSorterTests, findSmallGroupTest1)
 {
     ConfigController::TESTsetConfigInt("PercentageGapInGroups",5);
-    ConfigController::TESTsetConfigInt("MinimumGapInGroups",15);
+    ConfigController::TESTsetConfigInt("MinimumGapInGroupsCents",15);
     std::vector<int> testData;
     for (int i = 0; i < 15; i++)
     {
@@ -38,7 +38,7 @@ TEST(PriceSorterTests, findSmallGroupTest1)
 TEST(PriceSorterTests, findSmallGroupTest2)
 {
     ConfigController::TESTsetConfigInt("PercentageGapInGroups",5);
-    ConfigController::TESTsetConfigInt("MinimumGapInGroups",15);
+    ConfigController::TESTsetConfigInt("MinimumGapInGroupsCents",15);
     std::vector<int> testData;
     int x = 0;
     for (int i = 0; i < 15; i++)
@@ -53,7 +53,7 @@ TEST(PriceSorterTests, findSmallGroupTest2)
 TEST(PriceSorterTests, findSmallGroupTest3)
 {
     ConfigController::TESTsetConfigInt("PercentageGapInGroups",5);
-    ConfigController::TESTsetConfigInt("MinimumGapInGroups",15);
+    ConfigController::TESTsetConfigInt("MinimumGapInGroupsCents",15);
     std::vector<int> testData;
     for (int i = 1000; i < 1100; i++)
     {
@@ -66,7 +66,8 @@ TEST(PriceSorterTests, findSmallGroupTest3)
 TEST(PriceSorterTests, findSmallGroupTest4)
 {
     ConfigController::TESTsetConfigInt("PercentageGapInGroups",5);
-    ConfigController::TESTsetConfigInt("MinimumGapInGroups",15);
+    ConfigController::TESTsetConfigInt("MinimumGapInGroupsCents",15);
+    ConfigController::TESTsetConfigInt("MaximumGapInGroupsCents",9001);
     std::vector<int> testData;
     testData.push_back(1000);
     testData.push_back(10000);
