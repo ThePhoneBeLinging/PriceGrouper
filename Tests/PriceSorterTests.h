@@ -202,6 +202,8 @@ TEST(PriceSorterTests, FindPricesInColumn3)
     auto smallPriceGroups = PriceSorter::sortPrices(testData);
     auto cheapestCol = PriceSorter::findSmallPriceGroupsInsidePriceRange(34, smallPriceGroups);
     EXPECT_EQ(cheapestCol.size(), 3);
+    EXPECT_EQ(cheapestCol.front()->getEndTime(), 2);
+    EXPECT_EQ(cheapestCol.back()->getEndTime(),4);
 }
 
 
