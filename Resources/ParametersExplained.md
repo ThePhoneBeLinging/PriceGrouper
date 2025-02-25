@@ -33,7 +33,12 @@ For example if this value is 50, and the following prices are found
 Then the first 2 will be in a group no matter what. And the 3rd element
 will not be included no matter what.
 
-100, 150, 120.
+100, 151, 120.
 In this example 100 will be in a group for itself,
 as the max difference is exceeded.
+
+But if it was
+100, 150, 120
+
+Then they would all 3 be in the same group.
 
