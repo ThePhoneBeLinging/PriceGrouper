@@ -150,5 +150,59 @@ TEST(PriceSorterTests, SortPrices5)
     EXPECT_EQ(smallPriceGroups.size(), 24);
 }
 
+TEST(PriceSorterTests, FindPricesInColumn1)
+{
+    ConfigController::TESTsetConfigInt("PercentageGapInGroups",5);
+    ConfigController::TESTsetConfigInt("MinimumGapInGroupsCents",15);
+    ConfigController::TESTsetConfigInt("MaximumGapInGroupsCents",16);
+    ConfigController::TESTsetConfigInt("PercentageGapBetweenGroups",5);
+    ConfigController::TESTsetConfigInt("MinimumGapBetweenGroups",15);
+    std::vector<int> testData;
+    testData.reserve(24);
+    for (int i = 1; i < 25; i++)
+    {
+        testData.push_back(i * 17);
+    }
+    auto smallPriceGroups = PriceSorter::sortPrices(testData);
+    auto cheapestCol = PriceSorter::findSmallPriceGroupsInsidePriceRange(17, smallPriceGroups);
+    EXPECT_EQ(cheapestCol.size(), 1);
+}
+
+TEST(PriceSorterTests, FindPricesInColumn2)
+{
+    ConfigController::TESTsetConfigInt("PercentageGapInGroups",5);
+    ConfigController::TESTsetConfigInt("MinimumGapInGroupsCents",15);
+    ConfigController::TESTsetConfigInt("MaximumGapInGroupsCents",16);
+    ConfigController::TESTsetConfigInt("PercentageGapBetweenGroups",5);
+    ConfigController::TESTsetConfigInt("MinimumGapBetweenGroups",50);
+    std::vector<int> testData;
+    testData.reserve(24);
+    for (int i = 1; i < 25; i++)
+    {
+        testData.push_back(i * 17);
+    }
+    auto smallPriceGroups = PriceSorter::sortPrices(testData);
+    auto cheapestCol = PriceSorter::findSmallPriceGroupsInsidePriceRange(17, smallPriceGroups);
+    EXPECT_EQ(cheapestCol.size(), 3);
+}
+
+TEST(PriceSorterTests, FindPricesInColumn3)
+{
+    ConfigController::TESTsetConfigInt("PercentageGapInGroups",5);
+    ConfigController::TESTsetConfigInt("MinimumGapInGroupsCents",15);
+    ConfigController::TESTsetConfigInt("MaximumGapInGroupsCents",16);
+    ConfigController::TESTsetConfigInt("PercentageGapBetweenGroups",5);
+    ConfigController::TESTsetConfigInt("MinimumGapBetweenGroups",50);
+    std::vector<int> testData;
+    testData.reserve(24);
+    for (int i = 1; i < 25; i++)
+    {
+        testData.push_back(i * 17);
+    }
+    auto smallPriceGroups = PriceSorter::sortPrices(testData);
+    auto cheapestCol = PriceSorter::findSmallPriceGroupsInsidePriceRange(34, smallPriceGroups);
+    EXPECT_EQ(cheapestCol.size(), 3);
+}
+
 
 #endif //PRICESORTERTESTS_H
