@@ -42,3 +42,14 @@ But if it was
 
 Then they would all 3 be in the same group.
 
+### PercentageGapBetweenGroups
+Percentage of gap between groups, eg. if the average price of the cheapest group is 50, and this value is 5
+Then we will allow all other groups that have an average price of less than 52.5 to be in the same column.
+
+
+### MinimumGapBetweenGroups
+If this value exceeds the percentage gap above, this value is used instead.
+So if this value if 50, and the cheapest group has an average of 50.
+<br>
+Then we allow all prices below 100 to be in the same column as this one.
+

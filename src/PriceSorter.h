@@ -19,7 +19,7 @@ public:
      */
     static std::vector<std::shared_ptr<SmallPriceGroup>> sortPrices(const std::vector<int>& prices);
     static std::shared_ptr<SmallPriceGroup> findSmallPriceGroup(int hour, const std::vector<int>& prices);
-    static std::vector<std::shared_ptr<SmallPriceGroup>> findSmallPriceGroupsInsidePriceRange(int price);
+    static std::vector<std::shared_ptr<SmallPriceGroup>> findSmallPriceGroupsInsidePriceRange(int price, const std::vector<std::shared_ptr<SmallPriceGroup>>& smallPriceGroups);
 };
 
 

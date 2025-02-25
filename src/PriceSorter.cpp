@@ -39,3 +39,25 @@ std::shared_ptr<SmallPriceGroup> PriceSorter::findSmallPriceGroup(int hour, cons
     }
     return smallPriceGroup;
 }
+
+std::vector<std::shared_ptr<SmallPriceGroup>> PriceSorter::findSmallPriceGroupsInsidePriceRange(int price,
+                                                                                                const std::vector<std::shared_ptr<SmallPriceGroup>>& smallPriceGroups)
+{
+    int gapBetweenGroups = ConfigController::getConfigInt("MinimumGapBetweenGroups");
+    int percentageGap = ConfigController::getConfigInt("PercentageGapBetweenGroups");
+
+    int percentagePriceGap = price * (percentageGap / 100.0);
+    int maxGap = std::max(gapBetweenGroups, percentagePriceGap);
+
+    std::vector<std::shared_ptr<SmallPriceGroup>> smallPriceGroupsToReturn;
+
+    for (const auto& priceGroup : smallPriceGroups)
+    {
+        if (priceGroup->calcAveragePrice() < price + maxGap)
+        {
+            smallPriceGroupsToReturn.push_back(priceGroup);
+        }
+    }
+
+    return smallPriceGroupsToReturn;
+}
