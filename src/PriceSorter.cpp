@@ -8,7 +8,7 @@
 
 #include "Utility/ConfigController.h"
 
-std::vector<std::vector<std::shared_ptr<SmallPriceGroup>>> PriceSorter::sortPrices(const std::vector<int>& prices)
+std::vector<std::shared_ptr<SmallPriceGroup>> PriceSorter::sortPrices(const std::vector<int>& prices)
 {
     if (prices.size() != 24)
     {
@@ -22,19 +22,7 @@ std::vector<std::vector<std::shared_ptr<SmallPriceGroup>>> PriceSorter::sortPric
         smallPriceGroups.push_back(val);
         hour = val->getEndTime();
     }
-
-    // Finds smallest average of all groups.
-    int min = INT_MAX;
-    for (const auto& smallPriceGroup : smallPriceGroups)
-    {
-        int average = smallPriceGroup->calcAveragePrice();
-        if (average < min)
-        {
-            min = average;
-        }
-    }
-
-
+    return smallPriceGroups;
 }
 
 std::shared_ptr<SmallPriceGroup> PriceSorter::findSmallPriceGroup(int hour, const std::vector<int>& prices)

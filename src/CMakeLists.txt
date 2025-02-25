@@ -7,6 +7,8 @@ add_library(PriceGrouper STATIC
         PriceSorter.h
         SmallPriceGroup.cpp
         SmallPriceGroup.h
-        )
+        PriceGroupColumn.cpp
+        PriceGroupColumn.h
+)
 
 target_link_libraries(PriceGrouper PUBLIC Utility)

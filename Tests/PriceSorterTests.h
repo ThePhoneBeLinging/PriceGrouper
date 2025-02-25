@@ -76,5 +76,79 @@ TEST(PriceSorterTests, findSmallGroupTest4)
     EXPECT_EQ(result->getEndTime(),3);
 }
 
+TEST(PriceSorterTests, SortPrices1)
+{
+    ConfigController::TESTsetConfigInt("PercentageGapInGroups",5);
+    ConfigController::TESTsetConfigInt("MinimumGapInGroupsCents",15);
+    ConfigController::TESTsetConfigInt("MaximumGapInGroupsCents",9000);
+    std::vector<int> testData;
+    testData.reserve(24);
+    for (int i = 1; i < 25; i++)
+    {
+        testData.push_back(i * 7);
+    }
+    auto smallPriceGroups = PriceSorter::sortPrices(testData);
+    EXPECT_EQ(smallPriceGroups.size(), 8);
+}
+
+TEST(PriceSorterTests, SortPrices2)
+{
+    ConfigController::TESTsetConfigInt("PercentageGapInGroups",5);
+    ConfigController::TESTsetConfigInt("MinimumGapInGroupsCents",15);
+    ConfigController::TESTsetConfigInt("MaximumGapInGroupsCents",9000);
+    std::vector<int> testData;
+    testData.reserve(24);
+    for (int i = 1; i < 25; i++)
+    {
+        testData.push_back(i * 7.5);
+    }
+    auto smallPriceGroups = PriceSorter::sortPrices(testData);
+    EXPECT_EQ(smallPriceGroups.size(), 12);
+}
+
+TEST(PriceSorterTests, SortPrices3)
+{
+    ConfigController::TESTsetConfigInt("PercentageGapInGroups",5);
+    ConfigController::TESTsetConfigInt("MinimumGapInGroupsCents",15);
+    ConfigController::TESTsetConfigInt("MaximumGapInGroupsCents",9000);
+    std::vector<int> testData;
+    testData.reserve(24);
+    for (int i = 1; i < 25; i++)
+    {
+        testData.push_back(i * 8);
+    }
+    auto smallPriceGroups = PriceSorter::sortPrices(testData);
+    EXPECT_EQ(smallPriceGroups.size(), 12);
+}
+
+TEST(PriceSorterTests, SortPrices4)
+{
+    ConfigController::TESTsetConfigInt("PercentageGapInGroups",5);
+    ConfigController::TESTsetConfigInt("MinimumGapInGroupsCents",15);
+    ConfigController::TESTsetConfigInt("MaximumGapInGroupsCents",16);
+    std::vector<int> testData;
+    testData.reserve(24);
+    for (int i = 1; i < 25; i++)
+    {
+        testData.push_back(i * 17);
+    }
+    auto smallPriceGroups = PriceSorter::sortPrices(testData);
+    EXPECT_EQ(smallPriceGroups.size(), 24);
+}
+TEST(PriceSorterTests, SortPrices5)
+{
+    ConfigController::TESTsetConfigInt("PercentageGapInGroups",5);
+    ConfigController::TESTsetConfigInt("MinimumGapInGroupsCents",15);
+    ConfigController::TESTsetConfigInt("MaximumGapInGroupsCents",16);
+    std::vector<int> testData;
+    testData.reserve(24);
+    for (int i = 1; i < 25; i++)
+    {
+        testData.push_back(i * 17);
+    }
+    auto smallPriceGroups = PriceSorter::sortPrices(testData);
+    EXPECT_EQ(smallPriceGroups.size(), 24);
+}
+
 
 #endif //PRICESORTERTESTS_H
