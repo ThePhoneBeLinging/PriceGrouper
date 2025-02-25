@@ -14,7 +14,6 @@ class SmallPriceGroupTest : public ::testing::Test
 protected:
     void SetUp() override
     {
-        ConfigController::loadConfig("../../Resources/config.json");
     }
 
     void TearDown() override
