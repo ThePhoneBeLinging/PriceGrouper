@@ -12,7 +12,7 @@ SmallPriceGroup::SmallPriceGroup(int price, int hour)
     prices_.push_back(price);
 }
 
-bool SmallPriceGroup::shouldAdd(int price)
+bool SmallPriceGroup::shouldAdd(int price) const
 {
     int percentage = ConfigController::getConfigInt("PercentageGapInGroups");
     int minGap = ConfigController::getConfigInt("MinimumGapInGroupsCents");
@@ -39,7 +39,7 @@ void SmallPriceGroup::addPrice(int price)
     prices_.push_back(price);
 }
 
-int SmallPriceGroup::calcAveragePrice()
+int SmallPriceGroup::calcAveragePrice() const
 {
     int sum = 0;
     for (auto val : prices_)
@@ -49,7 +49,12 @@ int SmallPriceGroup::calcAveragePrice()
     return sum / prices_.size();
 }
 
-int SmallPriceGroup::getEndTime()
+int SmallPriceGroup::getStartTime() const
+{
+    return startHour_;
+}
+
+int SmallPriceGroup::getEndTime() const
 {
     return startHour_ + prices_.size();
 }

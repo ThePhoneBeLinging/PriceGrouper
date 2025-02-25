@@ -11,10 +11,11 @@ class SmallPriceGroup
 {
 public:
     SmallPriceGroup(int price, int hour);
-    bool shouldAdd(int price);
+    [[nodiscard]] bool shouldAdd(int price) const;
     void addPrice(int price);
-    int calcAveragePrice();
-    int getEndTime();
+    [[nodiscard]] int calcAveragePrice() const;
+    [[nodiscard]] int getStartTime() const;
+    [[nodiscard]] int getEndTime() const;
 private:
     int startHour_;
     std::vector<int> prices_;

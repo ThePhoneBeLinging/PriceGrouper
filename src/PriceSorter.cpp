@@ -10,7 +10,7 @@
 
 std::vector<std::vector<std::shared_ptr<SmallPriceGroup>>> PriceSorter::sortPrices(const std::vector<int>& prices)
 {
-    if (prices.size() % 24 != 0)
+    if (prices.size() != 24)
     {
         std::cout << "Complete day was not used in PriceSorter, only receieved: " << prices.size() << std::endl;
     }
@@ -23,6 +23,7 @@ std::vector<std::vector<std::shared_ptr<SmallPriceGroup>>> PriceSorter::sortPric
         hour = val->getEndTime();
     }
 
+    // Finds smallest average of all groups.
     int min = INT_MAX;
     for (const auto& smallPriceGroup : smallPriceGroups)
     {
