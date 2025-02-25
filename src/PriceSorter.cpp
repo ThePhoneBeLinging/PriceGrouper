@@ -53,7 +53,8 @@ std::vector<std::shared_ptr<SmallPriceGroup>> PriceSorter::findSmallPriceGroupsI
 
     for (const auto& priceGroup : smallPriceGroups)
     {
-        if (priceGroup->calcAveragePrice() < price + maxGap)
+        int averagePrice = priceGroup->calcAveragePrice();
+        if (averagePrice >= price && averagePrice < price + maxGap)
         {
             smallPriceGroupsToReturn.push_back(priceGroup);
         }
