@@ -42,7 +42,9 @@ std::vector<std::shared_ptr<LargePriceGroup>> PriceSorter::findLargePriceGroups(
 
     std::vector<std::shared_ptr<LargePriceGroup>> largePriceGroups;
 
-    for (int i = 0; i < 4; i++)
+    int maxAddedSoFar = 0;
+
+    for (int i = 0; i < 3; i++)
     {
         auto largePriceGroup = std::make_shared<LargePriceGroup>();
         auto cheapestSmallPrices = findSmallPriceGroupsInsidePriceRange(startValOfNextRange,firstDaySmallPrices);
@@ -50,6 +52,15 @@ std::vector<std::shared_ptr<LargePriceGroup>> PriceSorter::findLargePriceGroups(
         largePriceGroup->setSmallPriceGroup(cheapestSmallPrices);
         largePriceGroups.push_back(largePriceGroup);
     }
+    auto largePriceGroup = std::make_shared<LargePriceGroup>();
+    for (const auto& value : allSmallPrices)
+    {
+        if (value->calcAveragePrice() > startValOfNextRange)
+        {
+            largePriceGroup->addSmallPriceGroup(value);
+        }
+    }
+    largePriceGroups.push_back(largePriceGroup);
 
     return largePriceGroups;
 }
