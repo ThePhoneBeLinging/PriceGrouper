@@ -16,8 +16,8 @@ class PriceSorter
 public:
     /**
      * 
-     * @param prices Should be a vector of all prices in a day, e.g. it should consist of 24 elements
-     * @return Returns vector of SmallPriceGroups.
+     * @param prices Should be a vector of all prices in either one or two days. Therefore, 24 or 48 elements.
+     * @return Returns vector of LargePriceGroups
      */
     static std::vector<std::shared_ptr<LargePriceGroup>> findLargePriceGroups(const std::vector<int>& prices);
     static std::vector<std::shared_ptr<SmallPriceGroup>> sortPrices(const std::vector<int>& prices);
