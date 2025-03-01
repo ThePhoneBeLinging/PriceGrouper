@@ -5,6 +5,7 @@
 #include "PriceSorter.h"
 
 #include <iostream>
+#include <algorithm>
 
 #include "Utility/ConfigController.h"
 

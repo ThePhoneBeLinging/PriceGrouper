@@ -4,6 +4,8 @@
 
 #ifndef LARGEPRICEGROUP_H
 #define LARGEPRICEGROUP_H
+#include <memory>
+
 #include "SmallPriceGroup.h"
 
 
