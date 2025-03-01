@@ -13,6 +13,8 @@ set(SOURCES
         PriceSorterTests.cpp
         PriceSorterTests.h
         ../src/LargePriceGroup.cpp
+        CompleteSortingTest.h
+        CompleteSortingTest.cpp
         )
 add_executable(PriceGrouper_Tests ${SOURCES})
 
