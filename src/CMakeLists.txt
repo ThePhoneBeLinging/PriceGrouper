@@ -4,13 +4,8 @@ project(PriceGrouper)
 
 add_library(PriceGrouper STATIC
         PriceSorter.cpp
-        PriceSorter.h
         SmallPriceGroup.cpp
-        SmallPriceGroup.h
-        PriceGroupColumn.cpp
-        PriceGroupColumn.h
         LargePriceGroup.cpp
-        LargePriceGroup.h
 )
-
+target_include_directories(PriceGrouper PUBLIC include)
 target_link_libraries(PriceGrouper PUBLIC Utility)

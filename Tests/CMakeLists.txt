@@ -5,9 +5,9 @@ set(CMAKE_CXX_STANDARD 20)
 
 set(SOURCES
         ../src/PriceSorter.cpp
-        ../src/PriceSorter.h
+        ../src/include/PriceGrouper/PriceSorter.h
         ../src/SmallPriceGroup.cpp
-        ../src/SmallPriceGroup.h
+        ../src/include/PriceGrouper/SmallPriceGroup.h
         SmallPriceGroupTest.cpp
         SmallPriceGroupTest.h
         PriceSorterTests.cpp

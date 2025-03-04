@@ -2,7 +2,7 @@
 // Created by Elias Aggergaard Larsen on 25/02/2025.
 //
 
-#include "LargePriceGroup.h"
+#include "PriceGrouper/LargePriceGroup.h"
 
 void LargePriceGroup::addSmallPriceGroup(const std::shared_ptr<SmallPriceGroup>& smallPriceGroup)
 {

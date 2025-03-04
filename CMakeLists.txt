@@ -11,7 +11,6 @@ FetchContent_Declare(
 )
 
 FetchContent_MakeAvailable(googletest)
-add_subdirectory(dependencies/Utility)
 add_subdirectory(Tests)
 add_subdirectory(src)
 enable_testing()

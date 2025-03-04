@@ -2,7 +2,7 @@
 // Created by eal on 23/02/25.
 //
 
-#include "SmallPriceGroup.h"
+#include "PriceGrouper/SmallPriceGroup.h"
 
 #include "Utility/ConfigController.h"
 
