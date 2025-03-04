@@ -20,7 +20,7 @@ std::vector<std::shared_ptr<LargePriceGroup>> PriceSorter::findLargePriceGroups(
             firstDay.push_back(prices[i]);
         }
     }
-    else if (prices.size() == 48)
+    if (prices.size() == 48)
     {
         for (int i = 24; i < 48; i++)
         secondDay.push_back(prices[i]);
