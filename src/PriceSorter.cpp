@@ -48,8 +48,14 @@ std::vector<std::shared_ptr<LargePriceGroup>> PriceSorter::findLargePriceGroups(
     for (int i = 0; i < 3; i++)
     {
         auto largePriceGroup = std::make_shared<LargePriceGroup>();
-        auto cheapestSmallPrices = findSmallPriceGroupsInsidePriceRange(startValOfNextRange,firstDaySmallPrices);
-        startValOfNextRange = (*std::ranges::max_element(cheapestSmallPrices,comparator))->calcAveragePrice() + 1;
+        auto cheapestSmallPrices = findSmallPriceGroupsInsidePriceRange(startValOfNextRange,allSmallPrices);
+        if (cheapestSmallPrices.size() == 0)
+        {
+            startValOfNextRange = INT_MAX;
+            break;
+        }
+        int lowestValNotIncluded = (*std::ranges::max_element(cheapestSmallPrices,comparator))->calcAveragePrice();
+        startValOfNextRange = calcStartValOfNextRange(lowestValNotIncluded,allSmallPrices);
         largePriceGroup->setSmallPriceGroup(cheapestSmallPrices);
         largePriceGroups.push_back(largePriceGroup);
     }
@@ -119,4 +125,17 @@ std::vector<std::shared_ptr<SmallPriceGroup>> PriceSorter::findSmallPriceGroupsI
     }
 
     return smallPriceGroupsToReturn;
+}
+
+int PriceSorter::calcStartValOfNextRange(const int highestPrice, const std::vector<std::shared_ptr<SmallPriceGroup>>& smallPriceGroups)
+{
+    int minSoFar = INT_MAX;
+    for (const auto price : smallPriceGroups)
+    {
+        if (price->calcAveragePrice() < minSoFar && price->calcAveragePrice() > highestPrice)
+        {
+            minSoFar = price->calcAveragePrice();
+        }
+    }
+    return minSoFar;
 }

@@ -13,3 +13,8 @@ void LargePriceGroup::setSmallPriceGroup(const std::vector<std::shared_ptr<Small
 {
     smallPriceGroups_ = smallPriceGroups;
 }
+
+std::vector<std::shared_ptr<SmallPriceGroup>> LargePriceGroup::getSmallPriceGroups() const
+{
+    return smallPriceGroups_;
+}
