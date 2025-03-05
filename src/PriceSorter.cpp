@@ -2,7 +2,7 @@
 // Created by eal on 23/02/25.
 //
 
-#include "PriceGrouper/PriceSorter.h"
+#include "include/PriceGrouper/PriceSorter.h"
 
 #include <iostream>
 #include <algorithm>
