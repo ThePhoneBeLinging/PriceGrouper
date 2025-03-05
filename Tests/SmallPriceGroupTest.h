@@ -5,7 +5,7 @@
 #ifndef SMALLPRICEGROUPTEST_H
 #define SMALLPRICEGROUPTEST_H
 #include <gtest/gtest.h>
-#include "../src/SmallPriceGroup.h"
+#include "../src/include/PriceGrouper/SmallPriceGroup.h"
 #include "Utility/ConfigController.h"
 
 

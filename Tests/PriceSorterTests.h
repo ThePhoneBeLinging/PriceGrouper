@@ -6,7 +6,7 @@
 #define PRICESORTERTESTS_H
 #include <gtest/gtest.h>
 
-#include "../src/PriceSorter.h"
+#include "../src/include/PriceGrouper/PriceSorter.h"
 #include "Utility/ConfigController.h"
 
 class PriceSorterTests : public ::testing::Test

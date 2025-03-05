@@ -5,7 +5,7 @@
 #ifndef COMPLETESORTINGTEST_H
 #define COMPLETESORTINGTEST_H
 
-#include "../src/PriceSorter.h"
+#include "../src/include/PriceGrouper/PriceSorter.h"
 #include "gtest/gtest.h"
 #include "Utility/ConfigController.h"
 
