@@ -68,7 +68,7 @@ std::vector<std::shared_ptr<LargePriceGroup>> PriceSorter::findLargePriceGroups(
     auto largePriceGroup = std::make_shared<LargePriceGroup>();
     for (const auto& value : allSmallPrices)
     {
-        if (value->calcAveragePrice() > startValOfNextRange)
+        if (value->calcAveragePrice() > startValOfNextRange || value->getStartTime() == -1)
         {
             largePriceGroup->addSmallPriceGroup(value);
         }
@@ -125,7 +125,7 @@ std::vector<std::shared_ptr<SmallPriceGroup>> PriceSorter::findSmallPriceGroupsI
     {
         int averagePrice = priceGroup->calcAveragePrice();
         // We push the dummy smallgroup into the result. That way we know when we have passed the first 24.
-        if (averagePrice == INT32_MIN)
+        if (priceGroup->getStartTime() == -1)
         {
             smallPriceGroupsToReturn.push_back(priceGroup);
             continue;
