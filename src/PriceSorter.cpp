@@ -65,7 +65,7 @@ std::vector<std::shared_ptr<LargePriceGroup>> PriceSorter::findLargePriceGroups(
     auto largePriceGroup = std::make_shared<LargePriceGroup>();
     for (const auto& value : allSmallPrices)
     {
-        if (value->calcAveragePrice() > startValOfNextRange || value->getStartTime() == -1)
+        if (value->calcAveragePrice() >= startValOfNextRange || value->getStartTime() == -1)
         {
             largePriceGroup->addSmallPriceGroup(value);
         }
