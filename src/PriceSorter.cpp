@@ -58,10 +58,7 @@ std::vector<std::shared_ptr<LargePriceGroup>> PriceSorter::findLargePriceGroups(
         }
 
         int lowestValNotIncluded = (*std::ranges::max_element(cheapestSmallPrices,comparator))->calcAveragePrice();
-        if (i != 2)
-        {
-            startValOfNextRange = calcStartValOfNextRange(lowestValNotIncluded,allSmallPrices);
-        }
+        startValOfNextRange = calcStartValOfNextRange(lowestValNotIncluded,allSmallPrices);
         largePriceGroup->setSmallPriceGroup(cheapestSmallPrices);
         largePriceGroups.push_back(largePriceGroup);
     }
