@@ -33,7 +33,7 @@ std::vector<std::shared_ptr<LargePriceGroup>> PriceSorter::findLargePriceGroups(
     {
         allSmallPrices.push_back(val);
     }
-    auto comparator = [] (std::shared_ptr<SmallPriceGroup> a, std::shared_ptr<SmallPriceGroup> b) -> bool
+    auto comparator = [] (const std::shared_ptr<SmallPriceGroup>& a, const std::shared_ptr<SmallPriceGroup>& b) -> bool
     {
         return a->calcAveragePrice() < b->calcAveragePrice();
     };
