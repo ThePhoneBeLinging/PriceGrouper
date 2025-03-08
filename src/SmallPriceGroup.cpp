@@ -17,8 +17,19 @@ bool SmallPriceGroup::shouldAdd(int price) const
     int percentage = ConfigController::getConfigInt("PercentageGapInGroups");
     int minGap = ConfigController::getConfigInt("MinimumGapInGroupsCents");
     int maxGap = ConfigController::getConfigInt("MaximumGapInGroupsCents");
+    bool useFirstPrice = ConfigController::getConfigBool("SmallGroupsUseFirstValueInsteadOfAvg");
 
-    if (std::max(prices_[0],price) - std::min(prices_[0],price) > maxGap)
+    int valToCompareTo;
+    if (useFirstPrice)
+    {
+        valToCompareTo = prices_[0];
+    }
+    else
+    {
+        valToCompareTo = calcAveragePrice();
+    }
+
+    if (std::max(valToCompareTo,price) - std::min(valToCompareTo,price) > maxGap)
     {
         return false;
     }
@@ -27,10 +38,10 @@ bool SmallPriceGroup::shouldAdd(int price) const
         return true;
     }
     float multiplier = static_cast<float>(percentage) / 100.0f;
-    int minMaxValue = prices_[0] * multiplier;
+    int minMaxValue = static_cast<double>(valToCompareTo) * multiplier;
     minMaxValue = std::max(minMaxValue, minGap);
-    int minVal = prices_[0] - minMaxValue;
-    int maxVal = prices_[0] + minMaxValue;
+    int minVal = valToCompareTo - minMaxValue;
+    int maxVal = valToCompareTo + minMaxValue;
     return minVal < price && price < maxVal;
 }
 
