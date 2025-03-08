@@ -142,7 +142,7 @@ std::vector<std::shared_ptr<SmallPriceGroup>> PriceSorter::findSmallPriceGroupsI
 int PriceSorter::calcStartValOfNextRange(const int highestPrice, const std::vector<std::shared_ptr<SmallPriceGroup>>& smallPriceGroups)
 {
     int minSoFar = INT_MAX;
-    for (const auto price : smallPriceGroups)
+    for (const auto& price : smallPriceGroups)
     {
         if (price->calcAveragePrice() < minSoFar && price->calcAveragePrice() > highestPrice)
         {
