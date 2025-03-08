@@ -29,6 +29,8 @@ std::vector<std::shared_ptr<LargePriceGroup>> PriceSorter::findLargePriceGroups(
     auto firstDaySmallPrices = sortPrices(firstDay);
     auto secondDaySmallPrices = sortPrices(secondDay);
     auto allSmallPrices = firstDaySmallPrices;
+    auto dummySmallPrice = std::make_shared<SmallPriceGroup>(INT32_MAX,-1);
+    allSmallPrices.push_back(dummySmallPrice);
     for (const auto& val : secondDaySmallPrices)
     {
         allSmallPrices.push_back(val);
@@ -38,9 +40,9 @@ std::vector<std::shared_ptr<LargePriceGroup>> PriceSorter::findLargePriceGroups(
         return a->calcAveragePrice() < b->calcAveragePrice();
     };
     auto lowestPrice = *std::ranges::min_element(allSmallPrices,comparator);
-
     int startValOfNextRange = lowestPrice->calcAveragePrice();
 
+    dummySmallPrice->setPrice(INT32_MIN);
     std::vector<std::shared_ptr<LargePriceGroup>> largePriceGroups;
 
     int maxAddedSoFar = 0;
@@ -122,6 +124,12 @@ std::vector<std::shared_ptr<SmallPriceGroup>> PriceSorter::findSmallPriceGroupsI
     for (const auto& priceGroup : smallPriceGroups)
     {
         int averagePrice = priceGroup->calcAveragePrice();
+        // We push the dummy smallgroup into the result. That way we know when we have passed the first 24.
+        if (averagePrice == INT32_MIN)
+        {
+            smallPriceGroupsToReturn.push_back(priceGroup);
+            continue;
+        }
         if (averagePrice >= price && averagePrice < price + maxGap)
         {
             smallPriceGroupsToReturn.push_back(priceGroup);

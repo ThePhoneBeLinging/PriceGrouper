@@ -12,6 +12,11 @@ SmallPriceGroup::SmallPriceGroup(int price, int hour)
     prices_.push_back(price);
 }
 
+void SmallPriceGroup::setPrice(int price)
+{
+    prices_[0] = price;
+}
+
 bool SmallPriceGroup::shouldAdd(int price) const
 {
     int percentage = ConfigController::getConfigInt("PercentageGapInGroups");

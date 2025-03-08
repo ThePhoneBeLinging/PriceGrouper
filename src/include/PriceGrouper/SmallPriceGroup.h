@@ -11,6 +11,7 @@ class SmallPriceGroup
 {
 public:
     SmallPriceGroup(int price, int hour);
+    void setPrice(int price);
     [[nodiscard]] bool shouldAdd(int price) const;
     void addPrice(int price);
     [[nodiscard]] int calcAveragePrice() const;
