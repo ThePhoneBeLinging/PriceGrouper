@@ -45,7 +45,7 @@ bool SmallPriceGroup::shouldAdd(int price) const
     return minVal < price && price < maxVal;
 }
 
-void SmallPriceGroup::addPrice(int price)
+void SmallPriceGroup::addPrice(const int price)
 {
     prices_.push_back(price);
 }
