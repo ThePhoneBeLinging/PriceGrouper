@@ -8,6 +8,7 @@
 #include <algorithm>
 
 #include "Utility/ConfigController.h"
+#include "Utility/TimeUtil.h"
 
 std::vector<std::shared_ptr<LargePriceGroup>> PriceSorter::findLargePriceGroups(const std::vector<int>& prices)
 {
@@ -28,9 +29,27 @@ std::vector<std::shared_ptr<LargePriceGroup>> PriceSorter::findLargePriceGroups(
 
     auto firstDaySmallPrices = sortPrices(firstDay);
     auto secondDaySmallPrices = sortPrices(secondDay);
-    auto allSmallPrices = firstDaySmallPrices;
+    std::vector<std::shared_ptr<SmallPriceGroup>> allSmallPrices;
     auto dummySmallPrice = std::make_shared<SmallPriceGroup>(INT32_MAX,-1);
+    int currentHour = TimeUtil::getCurrentTime().tm_hour;
+    for (const auto& val: firstDaySmallPrices)
+    {
+        if (ConfigController::getConfigBool("OnlySortFuturePrices"))
+        {
+            if (val->getEndTime() > currentHour)
+            {
+                allSmallPrices.push_back(val);
+            }
+        }
+        else
+        {
+            allSmallPrices.push_back(val);
+        }
+
+    }
+
     allSmallPrices.push_back(dummySmallPrice);
+
     for (const auto& val : secondDaySmallPrices)
     {
         allSmallPrices.push_back(val);
