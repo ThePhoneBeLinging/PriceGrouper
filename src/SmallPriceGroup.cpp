@@ -17,6 +17,19 @@ void SmallPriceGroup::setPrice(int price)
     prices_[0] = price;
 }
 
+void SmallPriceGroup::appendSmallPriceGroup(const std::shared_ptr<SmallPriceGroup>& smallPriceGroup)
+{
+    for (auto price : smallPriceGroup->getPrices())
+    {
+        addPrice(price);
+    }
+}
+
+std::vector<int> SmallPriceGroup::getPrices()
+{
+    return prices_;
+}
+
 bool SmallPriceGroup::shouldAdd(int price) const
 {
     int percentage = ConfigController::getConfigInt("PercentageGapInGroups");
