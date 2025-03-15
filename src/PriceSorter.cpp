@@ -70,7 +70,7 @@ std::vector<std::shared_ptr<LargePriceGroup>> PriceSorter::findLargePriceGroups(
     {
         auto largePriceGroup = std::make_shared<LargePriceGroup>();
         auto cheapestSmallPrices = findSmallPriceGroupsInsidePriceRange(startValOfNextRange,allSmallPrices);
-        if (cheapestSmallPrices.size() == 0)
+        if (cheapestSmallPrices.size() == 1)
         {
             startValOfNextRange = INT_MAX;
             break;
