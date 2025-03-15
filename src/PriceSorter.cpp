@@ -24,7 +24,7 @@ std::vector<std::shared_ptr<LargePriceGroup>> PriceSorter::findLargePriceGroups(
     if (prices.size() == 48)
     {
         for (int i = 24; i < 48; i++)
-        secondDay.push_back(prices[i]);
+            secondDay.push_back(prices[i]);
     }
 
     auto firstDaySmallPrices = sortPrices(firstDay);
@@ -90,6 +90,12 @@ std::vector<std::shared_ptr<LargePriceGroup>> PriceSorter::findLargePriceGroups(
         }
     }
     largePriceGroups.push_back(largePriceGroup);
+    while (largePriceGroups.size() < 4)
+    {
+        auto localLargeGrouå = std::make_shared<LargePriceGroup>();
+        localLargeGrouå->addSmallPriceGroup(dummySmallPrice);
+        largePriceGroups.push_back(localLargeGrouå);
+    }
 
     return largePriceGroups;
 }
