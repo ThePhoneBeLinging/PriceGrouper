@@ -8,17 +8,17 @@ void LargePriceGroup::addSmallPriceGroup(const std::shared_ptr<SmallPriceGroup>&
 {
     if (not smallPriceGroups_.empty())
     {
-        if (smallPriceGroup->getStartTime() == smallPriceGroups_.back()->getEndTime() && smallPriceGroups_.back()->getStartTime() != -1)
+        if (smallPriceGroup->getStartTime() == smallPriceGroups_.back()->getEndTime() && smallPriceGroups_.back()->
+            getStartTime() != -1)
         {
             smallPriceGroups_.back()->appendSmallPriceGroup(smallPriceGroup);
             return;
         }
     }
     smallPriceGroups_.push_back(smallPriceGroup);
-
 }
 
-void LargePriceGroup::setSmallPriceGroup(const std::vector<std::shared_ptr<SmallPriceGroup>>& smallPriceGroups)
+void LargePriceGroup::setSmallPriceGroup(std::vector<std::shared_ptr<SmallPriceGroup>>& smallPriceGroups)
 {
     for (const auto& price : smallPriceGroups)
     {
