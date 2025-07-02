@@ -4,12 +4,12 @@
 
 #include "include/PriceGrouper/LargePriceGroup.h"
 
-void LargePriceGroup::addSmallPriceGroup(const std::shared_ptr<SmallPriceGroup>& smallPriceGroup)
+void LargePriceGroup::addSmallPriceGroup(const std::shared_ptr<SmallPriceGroup>& smallPriceGroup, bool toAppendExtendedTimePeriods)
 {
     if (not smallPriceGroups_.empty())
     {
         if (smallPriceGroup->getStartTime() == smallPriceGroups_.back()->getEndTime() && smallPriceGroups_.back()->
-            getStartTime() != -1)
+            getStartTime() != -1 && toAppendExtendedTimePeriods)
         {
             smallPriceGroups_.back()->appendSmallPriceGroup(smallPriceGroup);
             return;
@@ -22,7 +22,7 @@ void LargePriceGroup::setSmallPriceGroup(std::vector<std::shared_ptr<SmallPriceG
 {
     for (const auto& price : smallPriceGroups)
     {
-        addSmallPriceGroup(price);
+        addSmallPriceGroup(price,true);
     }
 }
 

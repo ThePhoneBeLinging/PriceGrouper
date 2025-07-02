@@ -13,7 +13,7 @@ class LargePriceGroup
 {
 public:
     LargePriceGroup() = default;
-    void addSmallPriceGroup(const std::shared_ptr<SmallPriceGroup>& smallPriceGroup);
+    void addSmallPriceGroup(const std::shared_ptr<SmallPriceGroup>& smallPriceGroup, bool toAppendExtendedTimePeriods);
     void setSmallPriceGroup(std::vector<std::shared_ptr<SmallPriceGroup>>& smallPriceGroups);
     [[nodiscard]] std::vector<std::shared_ptr<SmallPriceGroup>> getSmallPriceGroups() const;
 
