@@ -16,6 +16,7 @@ public:
     void addSmallPriceGroup(const std::shared_ptr<SmallPriceGroup>& smallPriceGroup, bool toAppendExtendedTimePeriods);
     void setSmallPriceGroup(std::vector<std::shared_ptr<SmallPriceGroup>>& smallPriceGroups);
     [[nodiscard]] std::vector<std::shared_ptr<SmallPriceGroup>> getSmallPriceGroups() const;
+    int getAveragePrice() const;
 
 private:
     std::vector<std::shared_ptr<SmallPriceGroup>> smallPriceGroups_;
