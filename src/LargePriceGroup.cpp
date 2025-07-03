@@ -11,7 +11,7 @@ void LargePriceGroup::addSmallPriceGroup(const std::shared_ptr<SmallPriceGroup>&
     if (not smallPriceGroups_.empty())
     {
         if (smallPriceGroup->getStartTime() == smallPriceGroups_.back()->getEndTime() && smallPriceGroups_.back()->
-            getStartTime() != -1 && (toAppendExtendedTimePeriods || std::abs(getAveragePrice() - smallPriceGroup->calcAveragePrice()) < ConfigController::getConfigInt("AllowedDistanceInRestColoumn")))
+            getStartTime() != -1 && (toAppendExtendedTimePeriods || std::abs(getAveragePrice() - smallPriceGroup->calcAveragePrice()) < ConfigController::getConfigInt("AllowedDistanceInRestColumn")))
         {
             smallPriceGroups_.back()->appendSmallPriceGroup(smallPriceGroup);
             return;
