@@ -85,14 +85,14 @@ std::vector<std::shared_ptr<LargePriceGroup>> PriceSorter::findLargePriceGroups(
     {
         if (value->calcAveragePrice() >= startValOfNextRange || value->getStartTime() == -1)
         {
-            largePriceGroup->addSmallPriceGroup(value,false);
+            largePriceGroup->addSmallPriceGroup(value, true);
         }
     }
     largePriceGroups.push_back(largePriceGroup);
     while (largePriceGroups.size() < 4)
     {
         auto localLargeGrouå = std::make_shared<LargePriceGroup>();
-        localLargeGrouå->addSmallPriceGroup(dummySmallPrice,true);
+        localLargeGrouå->addSmallPriceGroup(dummySmallPrice, true);
         largePriceGroups.push_back(localLargeGrouå);
     }
 
