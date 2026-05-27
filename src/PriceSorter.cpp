@@ -91,9 +91,9 @@ std::vector<std::shared_ptr<LargePriceGroup>> PriceSorter::findLargePriceGroups(
     largePriceGroups.push_back(largePriceGroup);
     while (largePriceGroups.size() < 4)
     {
-        auto localLargeGrouå = std::make_shared<LargePriceGroup>();
-        localLargeGrouå->addSmallPriceGroup(dummySmallPrice, true);
-        largePriceGroups.push_back(localLargeGrouå);
+        auto localLargeGroup = std::make_shared<LargePriceGroup>();
+        localLargeGroup->addSmallPriceGroup(dummySmallPrice, true);
+        largePriceGroups.push_back(localLargeGroup);
     }
 
     return largePriceGroups;
